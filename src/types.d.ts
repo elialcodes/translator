@@ -1,17 +1,33 @@
+//nos importamos el type de las siguientes constantes
+import { type SUPPORTED_LANGUAGES, type AUTO_LANGUAGE } from './constants';
+
+//este tipado será el mismo que el de las keys que tenemos en el objeto de la constante
+//SUPPORTD_LENGUAGES, así, si añadimos idiomas al traductor, tomará las keys
+//así los archivo de constantes y de tipos estarán sincronizados
+export type Language = keyof typeof SUPPORTED_LANGUAGES;
+
+//este tipado será el mismo que el que tiene AUTO_LANGUAGE, por si decidimos
+//cambiar el valor de la constante AUTO_LANGUAGE, los archivo de constantes y de tipos
+//estarán sincronizados
+export type AutoLanguage = typeof AUTO_LANGUAGE;
+
+//este tipado será para el idioma de partida, y juntará los 2 tipos anteriores
+export type FromLanguage = Language | AutoLanguage;
 export interface InitialState {
-  fromLanguage: string;
-  toLanguage: string;
+  fromLanguage: FromLanguage;
+  toLanguage: FromLanguage;
   fromText: string;
   result: string;
   loading: boolean;
 }
 
-//tipado de la acción del useReducer, combinamos tipos literales con normales
-//el payload es la información de la acción:
-//el idioma de entrada/salida, el texto introducido/resultante
+//tipado de la action del useReducer:
+//- type: tipos literales que corresponden con lo que hace cada action
+//- el payload es la información de la acción:
+//  el idioma de entrada/salida, el texto introducido/resultante
 export type Action =
-  | { type: 'INTERCHANGE_LANGUAGE' } //si el type es este, no tiene payload
-  | { type: 'SET_FROM_LANGUAGE'; payload: string }
-  | { type: 'SET_TO_LANGUAGE'; payload: string }
+  | { type: 'INTERCHANGE_LANGUAGE' } //si el type de action es este, no tiene payload
+  | { type: 'SET_FROM_LANGUAGE'; payload: FromLanguage }
+  | { type: 'SET_TO_LANGUAGE'; payload: Language }
   | { type: 'SET_FROM_TEXT'; payload: string }
   | { type: 'SET_RESULT'; payload: string };

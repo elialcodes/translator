@@ -1,4 +1,4 @@
-export const SUPORTED_LANGUAGES = {
+export const SUPPORTED_LANGUAGES = {
   en: 'English',
   es: 'Spanish',
   fr: 'French',
