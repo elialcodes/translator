@@ -4,6 +4,7 @@ import { type SUPPORTED_LANGUAGES, type AUTO_LANGUAGE } from './constants';
 //este tipado será el mismo que el de las keys que tenemos en el objeto de la constante
 //SUPPORTD_LENGUAGES, así, si añadimos idiomas al traductor, tomará las keys
 //así los archivo de constantes y de tipos estarán sincronizados
+//con typeof le decimo que coja el objeto al completo (y de ahí saca las keys)
 export type Language = keyof typeof SUPPORTED_LANGUAGES;
 
 //este tipado será el mismo que el que tiene AUTO_LANGUAGE, por si decidimos
@@ -15,7 +16,7 @@ export type AutoLanguage = typeof AUTO_LANGUAGE;
 export type FromLanguage = Language | AutoLanguage;
 export interface InitialState {
   fromLanguage: FromLanguage;
-  toLanguage: FromLanguage;
+  toLanguage: Language;
   fromText: string;
   result: string;
   loading: boolean;

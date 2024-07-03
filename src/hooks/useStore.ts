@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-// import { AUTO_LANGUAGE } from '../constants';
+import { AUTO_LANGUAGE } from '../constants';
 import {
   type Action,
   type InitialState,
@@ -17,7 +17,7 @@ export const initialState: InitialState = {
   loading: false,
 };
 
-//2. Creamos la función reducer, que siempre devuelve un estado y lleva siempre 2 argumentos:
+//2. Creamos la función reducer, que siempre devuelve un estado y lleva 2 argumentos:
 //- el estado
 //- una accion: action es un objeto que tiene como propiedades el tipo de acción (type)
 //  y payload (que es la información que lleva consigo la accion y con esta información
@@ -27,15 +27,22 @@ export function reducer(state: InitialState, action: Action): InitialState {
   const { type } = action;
 
   if (type === 'INTERCHANGE_LANGUAGE') {
+    //logica dentro del reducer, para que cuando se intercambien los lenguajes, si el
+    //del lenguage de partida es auto, no se setee el estado
+    if (state.fromLanguage === AUTO_LANGUAGE) {
+      return state;
+    }
     //tomamos con spreed todo el estado inicial y setearemos los 2 estados Languages:
     //en esta acción hacemos un intercambio entre los lenguages de entrada y salida,
-    //y aquí no hay payload, no es necesario que action devuelva información con la que
-    //setear el estado, así que podemos setear directamente.
-    return {
-      ...state,
-      fromLanguage: state.toLanguage,
-      toLanguage: state.fromLanguage,
-    };
+    //y aquí no hay payload, no es necesario que action devuelva información con la
+    //que setear el estado, así que podemos setear directamente.
+    else {
+      return {
+        ...state,
+        fromLanguage: state.toLanguage,
+        toLanguage: state.fromLanguage,
+      };
+    }
   }
   if (type === 'SET_FROM_LANGUAGE') {
     //tomamos con spreed todo el estado incial y setearemos uno de los estados
@@ -74,7 +81,7 @@ export function reducer(state: InitialState, action: Action): InitialState {
 export function useStore() {
   //useReduce siempre devuelve un array con 2 elementos: el estado actual del
   //componente y el dispatch (una función que se usa para despachar acciones
-  //que actualizan el estado).
+  //que actualizan el estado)
   //del array que devuelve useReducer sacamos 5 constantes del estado inicial
   //así como el dispatch; y como argumentos del useReducer pasamos la función
   //reducer(función que manejará las actualizaciones del estado) y el estado inicial
@@ -83,7 +90,7 @@ export function useStore() {
 
   //es buena práctica que el dispatch no salga de aquí, asi que hacemos una
   //función intermedia, que será lo que retornemos
-  const interchangeLanguages = () => {
+  const interchangeLanguage = () => {
     dispatch({ type: 'INTERCHANGE_LANGUAGE' });
   };
 
@@ -94,9 +101,11 @@ export function useStore() {
   const setToLanguage = (payload: Language) => {
     dispatch({ type: 'SET_TO_LANGUAGE', payload });
   };
+
   const setFromText = (payload: string) => {
     dispatch({ type: 'SET_FROM_TEXT', payload });
   };
+
   const setResult = (payload: string) => {
     dispatch({ type: 'SET_RESULT', payload });
   };
@@ -107,7 +116,7 @@ export function useStore() {
     fromText,
     result,
     loading,
-    interchangeLanguages,
+    interchangeLanguage,
     setFromLanguage,
     setToLanguage,
     setFromText,
