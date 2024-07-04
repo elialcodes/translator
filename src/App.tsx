@@ -5,14 +5,20 @@ import { useStore } from './hooks/useStore';
 import { AUTO_LANGUAGE } from './constants';
 import { ArrowsIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
+import { TextArea } from './components/TextArea';
 
 function App() {
   const {
     fromLanguage,
     toLanguage,
+    fromText,
+    result,
+    loading,
     interchangeLanguage,
     setFromLanguage,
     setToLanguage,
+    setFromText,
+    setResult,
   } = useStore();
 
   return (
@@ -25,7 +31,7 @@ function App() {
             value={fromLanguage}
             onChange={setFromLanguage}
           />
-          {fromLanguage}
+          <TextArea type="from" value={fromText} onChange={setFromText} />
         </Col>
         <Col>
           <Button
@@ -43,7 +49,12 @@ function App() {
             value={toLanguage}
             onChange={setToLanguage}
           />
-          {toLanguage}
+          <TextArea
+            type="to"
+            loading={loading}
+            value={result}
+            onChange={setResult}
+          />
         </Col>
       </Row>
     </Container>

@@ -21,7 +21,7 @@ export interface InitialState {
   toLanguage: Language;
   fromText: string;
   result: string;
-  loading: boolean;
+  loading?: boolean;
 }
 
 //tipado de la action del useReducer:
@@ -34,3 +34,8 @@ export type Action =
   | { type: 'SET_TO_LANGUAGE'; payload: Language }
   | { type: 'SET_FROM_TEXT'; payload: string }
   | { type: 'SET_RESULT'; payload: string };
+
+// export interface Type {
+//   from: 'from';
+//   to: 'to';
+// }
