@@ -1,15 +1,17 @@
-//nos importamos el type de las siguientes constantes
+//en el archivo de las constantes el tipado ha sido por inferencianos, así que nos
+//importamos sus tipos para que, si modificamos el arthivo de las constantes,
+//el archivo de los tipos esté sincronizado
 import { type SUPPORTED_LANGUAGES, type AUTO_LANGUAGE } from './constants';
 
-//este tipado será el mismo que el de las keys que tenemos en el objeto de la constante
-//SUPPORTD_LENGUAGES, así, si añadimos idiomas al traductor, tomará las keys
-//así los archivo de constantes y de tipos estarán sincronizados
-//con typeof le decimo que coja el objeto al completo (y de ahí saca las keys)
+//el tipo Language será el mismo que el de las keys que tenemos en el objeto de la
+//constante SUPPORTED_LENGUAGES, así, si añadimos idiomas al traductor, tomará
+//las keys y los archivo de constantes y de tipos estarán sincronizados
+//con typeof le decimos que coja el objeto al completo (y de ahí saca las keys)
 export type Language = keyof typeof SUPPORTED_LANGUAGES;
 
-//este tipado será el mismo que el que tiene AUTO_LANGUAGE, por si decidimos
-//cambiar el valor de la constante AUTO_LANGUAGE, los archivo de constantes y de tipos
-//estarán sincronizados
+//el tipo AutoLanguage será el mismo que el que tiene AUTO_LANGUAGE, así si
+//decidimos cambiar el valor de la constante AUTO_LANGUAGE, los archivo de
+//constantes y de tipos estarán sincronizados
 export type AutoLanguage = typeof AUTO_LANGUAGE;
 
 //este tipado será para el idioma de partida, y juntará los 2 tipos anteriores

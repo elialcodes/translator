@@ -7,7 +7,8 @@ import {
   type Language,
 } from '../types';
 
-//Hook useReducer: para manejar estados complejos
+//Hook useReducer: para manejar estados complejos:
+
 //1. Creamos el estado inicial a modo de objeto
 export const initialState: InitialState = {
   fromLanguage: 'auto',
@@ -19,20 +20,20 @@ export const initialState: InitialState = {
 
 //2. Creamos la función reducer, que siempre devuelve un estado y lleva 2 argumentos:
 //- el estado
-//- una accion: action es un objeto que tiene como propiedades el tipo de acción (type)
-//  y payload (que es la información que lleva consigo la accion y con esta información
+//- una accion: action es un objeto que tiene como propiedades type (el tipo de
+//  acción) y payload (que es la información que lleva consigo la accion y con ella
 //  seteraremos el estado)
 export function reducer(state: InitialState, action: Action): InitialState {
   //de action, sacamos la constante type
   const { type } = action;
 
   if (type === 'INTERCHANGE_LANGUAGE') {
-    //logica dentro del reducer, para que cuando se intercambien los lenguajes, si el
-    //del lenguage de partida es auto, no se setee el estado
+    //logica dentro del reducer para cuando se intercambien los lenguajes:
+    //si el lenguage de partida es auto, no se setea el estado
     if (state.fromLanguage === AUTO_LANGUAGE) {
       return state;
     }
-    //tomamos con spreed todo el estado inicial y setearemos los 2 estados Languages:
+    //si no, tomamos con spreed todo el estado inicial y setearemos 2 estados:
     //en esta acción hacemos un intercambio entre los lenguages de entrada y salida,
     //y aquí no hay payload, no es necesario que action devuelva información con la
     //que setear el estado, así que podemos setear directamente.
@@ -46,7 +47,7 @@ export function reducer(state: InitialState, action: Action): InitialState {
   }
   if (type === 'SET_FROM_LANGUAGE') {
     //tomamos con spreed todo el estado incial y setearemos uno de los estados
-    //con la información del payload
+    //con la información del payload de action
     return {
       ...state,
       fromLanguage: action.payload,
@@ -73,11 +74,10 @@ export function reducer(state: InitialState, action: Action): InitialState {
       result: action.payload,
     };
   }
-  return state; //siempre va a devolver un estado
+  return state; //sea cuan sea la condición siempre va a devolver un estado
 }
 
-//3. Hook useReducer, que tiene como parámetros la función reducer y
-//el estado inicial
+//3. Hook useReducer, tiene como parámetros la función reducer y el estado inicial
 export function useStore() {
   //useReduce siempre devuelve un array con 2 elementos: el estado actual del
   //componente y el dispatch (una función que se usa para despachar acciones
@@ -89,7 +89,8 @@ export function useStore() {
     useReducer(reducer, initialState);
 
   //es buena práctica que el dispatch no salga de aquí, asi que hacemos una
-  //función intermedia, que será lo que retornemos
+  //función intermedia, que será lo que retornemos y que nos dice que despachemos
+  //la action del reducer correspondiente al type...el que sea
   const interchangeLanguage = () => {
     dispatch({ type: 'INTERCHANGE_LANGUAGE' });
   };

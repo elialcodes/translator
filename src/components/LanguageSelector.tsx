@@ -14,7 +14,7 @@ type Props =
     }
   | { type: 'to'; value: Language; onChange: (language: Language) => void };
 
-export const LanguageSelector: FC<Props> = ({ onChange, type, value }) => {
+export const LanguageSelector: FC<Props> = ({ type, value, onChange }) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(event.target.value as Language); //TS devolvía error y se forzó el tipado
   };
@@ -25,10 +25,11 @@ export const LanguageSelector: FC<Props> = ({ onChange, type, value }) => {
       onChange={handleChange}
       value={value}
     >
+      {/* si type = "from", por defecto tendrá valor "auto" para detectar el idioma */}
       {type === 'from' && <option value="auto">Detect language</option>}
 
       {/* SUPPORTED_LANGUAGES es un objeto, no un array, para poderlo mapear
-      tomamos del objeto sus entradas y las mapeamos */}
+      tomamos del objeto sus entradas y mapeamos las entrada y sus valores*/}
       {Object.entries(SUPPORTED_LANGUAGES).map(([key, literal]) => (
         <option key={key} value={key}>
           {/* al usuario le mostramos el literal, no la key */}

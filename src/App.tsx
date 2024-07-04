@@ -32,7 +32,7 @@ function App() {
             variant="link"
             // si el lenguaje de partida es "auto", el botón está desabilitado
             disabled={fromLanguage === AUTO_LANGUAGE}
-            onClick={() => interchangeLanguage}
+            onClick={interchangeLanguage}
           >
             <ArrowsIcon />
           </Button>
