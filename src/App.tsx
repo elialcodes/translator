@@ -69,6 +69,13 @@ function App() {
           <TextArea type="to" loading={loading} value={result} readOnly />
         </Col>
       </Row>
+      <button
+        onClick={() => {
+          translateText('Hola Mundo', 'EN');
+        }}
+      >
+        TEST
+      </button>
     </Container>
   );
 }
