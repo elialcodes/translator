@@ -19,6 +19,7 @@ export const TextArea: FC<Props> = ({ type, loading, onChange, value }) => {
       as="textarea"
       autoFocus={type === 'from' ? true : false}
       placeholder={type === 'from' ? 'Enter a text' : 'Translation'}
+      disabled={type === 'to' && loading}
       style={{
         marginTop: '10px',
         height: '200px',
