@@ -1,11 +1,13 @@
 import './App.css';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect } from 'react';
 import { useStore } from './hooks/useStore';
 import { AUTO_LANGUAGE } from './constants';
 import { ArrowsIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
 import { TextArea } from './components/TextArea';
+import { translateText } from './services/apiDeepL';
 
 function App() {
   const {
@@ -20,6 +22,21 @@ function App() {
     setFromText,
     setResult,
   } = useStore();
+
+  const handleTranslate = async () => {
+    try {
+      const translated = await translateText(fromText, toLanguage);
+      setResult(translated);
+    } catch (error) {
+      console.error('Translation error:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (fromText) {
+      handleTranslate();
+    }
+  }, [fromText, toLanguage]);
 
   return (
     <Container>
@@ -49,12 +66,7 @@ function App() {
             value={toLanguage}
             onChange={setToLanguage}
           />
-          <TextArea
-            type="to"
-            loading={loading}
-            value={result}
-            onChange={setResult}
-          />
+          <TextArea type="to" loading={loading} value={result} readOnly />
         </Col>
       </Row>
     </Container>
