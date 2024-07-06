@@ -30,7 +30,7 @@ function App() {
     try {
       const translated = await translateText(
         fromLanguage,
-        fromText,
+        debouncedFromText,
         toLanguage,
       );
       setResult(translated);
@@ -43,10 +43,10 @@ function App() {
     // if (fromText === '') {
     //   return;
     // }
-    if (fromText) {
+    if (debouncedFromText) {
       handleTranslate();
     }
-  }, [fromText, fromLanguage, toLanguage]);
+  }, [debouncedFromText, fromLanguage, toLanguage]);
 
   return (
     <Container>
@@ -79,13 +79,6 @@ function App() {
           <TextArea type="to" loading={loading} value={result} readOnly />
         </Col>
       </Row>
-      <button
-        onClick={() => {
-          translateText(fromText, fromLanguage, toLanguage);
-        }}
-      >
-        TEST
-      </button>
     </Container>
   );
 }
