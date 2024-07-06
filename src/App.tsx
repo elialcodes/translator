@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import { useStore } from './hooks/useStore';
+import { useDebounce } from './hook/useDebounce';
 import { AUTO_LANGUAGE } from './constants';
 import { ArrowsIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
@@ -23,6 +24,8 @@ function App() {
     setResult,
   } = useStore();
 
+  const debouncedFromText = useDebounce(fromText, 500);
+
   const handleTranslate = async () => {
     try {
       const translated = await translateText(
@@ -37,10 +40,13 @@ function App() {
   };
 
   useEffect(() => {
+    // if (fromText === '') {
+    //   return;
+    // }
     if (fromText) {
       handleTranslate();
     }
-  }, [fromText, toLanguage]);
+  }, [fromText, fromLanguage, toLanguage]);
 
   return (
     <Container>
@@ -85,3 +91,7 @@ function App() {
 }
 
 export default App;
+
+//Como estás? Necesito escribir un texto muy largo para ver si sale "cargando"
+//bon jour
+//My name is Noelia

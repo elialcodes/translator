@@ -29,7 +29,7 @@ export function reducer(state: InitialState, action: Action): InitialState {
 
   if (type === 'INTERCHANGE_LANGUAGE') {
     //logica dentro del reducer para cuando se intercambien los lenguajes:
-    //si el lenguage de partida es auto, no se setea el estado
+    //si el lenguage de partida es predeterminado en auto, no se setea el estado
     if (state.fromLanguage === AUTO_LANGUAGE) {
       return state;
     }
@@ -37,36 +37,51 @@ export function reducer(state: InitialState, action: Action): InitialState {
     //en esta acción hacemos un intercambio entre los lenguages de entrada y salida,
     //y aquí no hay payload, no es necesario que action devuelva información con la
     //que setear el estado, así que podemos setear directamente.
-    else {
-      return {
-        ...state,
-        fromLanguage: state.toLanguage,
-        toLanguage: state.fromLanguage,
-      };
-    }
+    return {
+      ...state,
+      fromLanguage: state.toLanguage,
+      toLanguage: state.fromLanguage,
+    };
   }
+
   if (type === 'SET_FROM_LANGUAGE') {
-    //tomamos con spreed todo el estado incial y setearemos uno de los estados
-    //con la información del payload de action
+    //si el lenguaje de partida es = al que contiene payload se devuelve el estado tal cual
+    if (state.fromLanguage === action.payload) return state;
+
+    //definimos la constante loading para que sea true cuando haya texto en formText
+    const loading = state.fromText !== '';
+
+    //si no, tomamos con spreed todo el estado incial y setearemos uno estado
+    //con la información del payload de action y otros dos a " ".
     return {
       ...state,
       fromLanguage: action.payload,
+      fromText: '',
+      result: '',
+      loading,
     };
   }
+
   if (type === 'SET_TO_LANGUAGE') {
+    //si el lenguaje de salida es = al que contiene payload se devuelve el estado tal cual
+    if (state.toLanguage === action.payload) return state;
+
     return {
       ...state,
       toLanguage: action.payload,
     };
   }
+
   if (type === 'SET_FROM_TEXT') {
+    const loading = state.fromText !== '';
     return {
       ...state,
-      loading: true, //seteamos el estado loading mientras el traductor piensa
+      loading, //seteamos el estado loading mientras el traductor piensa
       fromText: action.payload,
       result: '',
     };
   }
+
   if (type === 'SET_RESULT') {
     return {
       ...state,
@@ -74,6 +89,7 @@ export function reducer(state: InitialState, action: Action): InitialState {
       result: action.payload,
     };
   }
+
   return state; //sea cuan sea la condición siempre va a devolver un estado
 }
 
