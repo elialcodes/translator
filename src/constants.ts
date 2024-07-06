@@ -1,12 +1,11 @@
 export const SUPPORTED_LANGUAGES = {
-  en: 'English',
   es: 'Spanish',
+  en: 'English',
   fr: 'French',
 };
 
-export const AUTO_LANGUAGE = 'auto';
+export const AUTO_LANGUAGE = 'es';
 
-// export const TYPES = {
-//   from: 'from',
-//   to: 'to',
-// };
+//lo dejamos preparado para una futura api mejor que detecte el idioma de entrada
+//por lo que el idioma por defecto sería "auto" y no "es":
+//export const AUTO_LANGUAGE = 'auto';

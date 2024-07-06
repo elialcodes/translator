@@ -11,7 +11,7 @@ import {
 
 //1. Creamos el estado inicial a modo de objeto
 export const initialState: InitialState = {
-  fromLanguage: 'auto',
+  fromLanguage: 'es',
   toLanguage: 'en',
   fromText: '',
   result: '',

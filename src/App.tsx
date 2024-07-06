@@ -7,7 +7,7 @@ import { AUTO_LANGUAGE } from './constants';
 import { ArrowsIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
 import { TextArea } from './components/TextArea';
-import { translateText } from './services/apiDeepL';
+import { translateText } from './services/apiTranslate';
 
 function App() {
   const {
@@ -25,7 +25,11 @@ function App() {
 
   const handleTranslate = async () => {
     try {
-      const translated = await translateText(fromText, toLanguage);
+      const translated = await translateText(
+        fromLanguage,
+        fromText,
+        toLanguage,
+      );
       setResult(translated);
     } catch (error) {
       console.error('Translation error:', error);
@@ -71,7 +75,7 @@ function App() {
       </Row>
       <button
         onClick={() => {
-          translateText('Hola Mundo', 'EN');
+          translateText(fromText, fromLanguage, toLanguage);
         }}
       >
         TEST
