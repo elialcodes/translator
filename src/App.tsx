@@ -3,7 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import { useStore } from './hooks/useStore';
-import { useDebounce } from './hook/useDebounce';
+import { useDebounce } from './hooks/useDebounce';
 import { AUTO_LANGUAGE } from './constants';
 import { ArrowsIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
@@ -24,7 +24,7 @@ function App() {
     setResult,
   } = useStore();
 
-  const debouncedFromText = useDebounce(fromText, 500);
+  const debouncedFromText = useDebounce(fromText, 1000);
 
   const handleTranslate = async () => {
     try {
