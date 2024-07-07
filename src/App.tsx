@@ -1,7 +1,7 @@
 import './App.css';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from './hooks/useStore';
 import { useDebounce } from './hooks/useDebounce';
 import { AUTO_LANGUAGE, VOICE_FOR_LANGUAGE } from './constants';
@@ -48,9 +48,19 @@ function App() {
     }
   }, [debouncedFromText, fromLanguage, toLanguage]);
 
-  //función para copiar texto del text area,lo hará el navegador y sus propiedades
+  // Estado para mostrar el mensaje "Copied text"
+  const [copied, setCopied] = useState(false);
+
+  //función para copiar texto del text area,lo hará el navegador
+  //con la API del Portapapeles
   const handleClipBoard = () => {
-    navigator.clipboard.writeText(result).catch(() => {});
+    navigator.clipboard
+      .writeText(result)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Mostrar mensaje durante 2 segundos
+      })
+      .catch(() => {});
   };
 
   //función para dar voz al texto result, lo hará el navegador y sus propiedades
@@ -96,6 +106,7 @@ function App() {
             style={{
               marginTop: '10px',
             }}
+            disabled={result === ''}
             onClick={handleClipBoard}
           >
             <ClipboardIcon />
@@ -105,10 +116,12 @@ function App() {
             style={{
               marginTop: '10px',
             }}
+            disabled={result === ''}
             onClick={handleSpeak}
           >
             <SpeakerIcon />
           </Button>
+          {copied && <div className="copied-message">Copied text</div>}
         </Col>
       </Row>
     </Container>

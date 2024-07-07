@@ -3,3 +3,12 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+.copied-message {
+  width: 50%;
+  margin-top: 10px;
+  text-align: center;
+  background-color: lightskyblue;
+  padding: 5px;
+  border-radius: 5px;
+}
