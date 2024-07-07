@@ -4,15 +4,6 @@
   box-sizing: border-box;
 }
 
-/* .copied-message {
-  width: 50%;
-  margin-top: 10px;
-  text-align: center;
-  background-color: lightskyblue;
-  padding: 5px;
-  border-radius: 5px;
-} */
-
 .title {
   width: 100%;
   font-size: 3em;
@@ -38,7 +29,7 @@
 
 .language {
   width: 250px;
-  background-color: rgb(45, 169, 241);
+  background-color: rgb(87, 188, 246);
   font-size: 18px;
   padding: 5px;
   color: black;
@@ -63,14 +54,46 @@
   height: 200px;
 }
 
-.button-icon {
-  background-color: transparent;
-  border: none;
+.arrows-button {
+  background-color: lightslategray;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+
+.arrows-button:hover {
+  border: 1px solid white;
+}
+
+.icon-button {
+  background-color: lightslategray;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-left: 10%;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  border: 1px solid white;
 }
 
 .copied-text {
-  background-color: lightskyblue;
+  background-color: lightpink;
+  padding: 4px 6px;
+  border-radius: 5px;
+  margin-left: 10%;
 }
+
+/* .copied-message {
+  width: 50%;
+  margin-top: 10px;
+  text-align: center;
+  background-color: lightskyblue;
+  padding: 5px;
+  border-radius: 5px;
+} */
 
 @media (max-width: 767px) {
   .container {
@@ -78,7 +101,7 @@
   }
 
   .language {
-    width: 130px;
+    width: 120px;
     font-size: 14px;
   }
 

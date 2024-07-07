@@ -81,7 +81,7 @@ function App() {
             onChange={setFromLanguage}
           />
           <button
-            className="button-icon"
+            className="arrows-button"
             // si el lenguaje de partida es "auto", el botón está desabilitado
             disabled={fromLanguage === AUTO_LANGUAGE}
             onClick={interchangeLanguage}
@@ -98,9 +98,9 @@ function App() {
           <TextArea type="from" value={fromText} onChange={setFromText} />
           <div>
             <TextArea type="to" loading={loading} value={result} readOnly />
-            <div className="copy-and-speak">
+            <div>
               <button
-                className="button-icon"
+                className="icon-button"
                 style={{
                   marginTop: '10px',
                 }}
@@ -110,17 +110,13 @@ function App() {
                 <ClipboardIcon />
               </button>
               <button
-                className="button-icon"
+                className="icon-button"
                 disabled={result === ''}
                 onClick={handleSpeak}
               >
                 <SpeakerIcon />
               </button>
-              {copied && (
-                <span className="copied-text" style={{ marginLeft: '10px' }}>
-                  Copied text
-                </span>
-              )}
+              {copied && <span className="copied-text">Copied text!</span>}
             </div>
           </div>
         </div>
