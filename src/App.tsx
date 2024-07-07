@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
 import { useStore } from './hooks/useStore';
 import { useDebounce } from './hooks/useDebounce';
-import { AUTO_LANGUAGE } from './constants';
-import { ArrowsIcon } from './components/Icons';
+import { AUTO_LANGUAGE, VOICE_FOR_LANGUAGE } from './constants';
+import { ArrowsIcon, ClipboardIcon, SpeakerIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
 import { TextArea } from './components/TextArea';
 import { translateText } from './services/apiTranslate';
@@ -48,6 +48,20 @@ function App() {
     }
   }, [debouncedFromText, fromLanguage, toLanguage]);
 
+  //función para copiar texto del text area,lo hará el navegador y sus propiedades
+  const handleClipBoard = () => {
+    navigator.clipboard.writeText(result).catch(() => {});
+  };
+
+  //función para dar voz al texto result, lo hará el navegador y sus propiedades
+  //uterance significa instancia
+  const handleSpeak = () => {
+    const uterance = new SpeechSynthesisUtterance(result);
+    uterance.lang = VOICE_FOR_LANGUAGE[toLanguage];
+    uterance.rate = 0.9; //velocidad de la voz
+    speechSynthesis.speak(uterance);
+  };
+
   return (
     <Container>
       <h1>Translator</h1>
@@ -77,6 +91,24 @@ function App() {
             onChange={setToLanguage}
           />
           <TextArea type="to" loading={loading} value={result} readOnly />
+          <Button
+            variant="link"
+            style={{
+              marginTop: '10px',
+            }}
+            onClick={handleClipBoard}
+          >
+            <ClipboardIcon />
+          </Button>
+          <Button
+            variant="link"
+            style={{
+              marginTop: '10px',
+            }}
+            onClick={handleSpeak}
+          >
+            <SpeakerIcon />
+          </Button>
         </Col>
       </Row>
     </Container>

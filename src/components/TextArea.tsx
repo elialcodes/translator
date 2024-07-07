@@ -7,6 +7,7 @@ interface Props {
   onChange?: (value: string) => void;
   value: string;
   readOnly?: boolean;
+  ref?: React.RefObject<HTMLTextAreaElement>;
 }
 
 export const TextArea: FC<Props> = ({ type, loading, onChange, value }) => {
@@ -17,6 +18,7 @@ export const TextArea: FC<Props> = ({ type, loading, onChange, value }) => {
       onChange(event.target.value);
     }
   };
+
   return (
     <Form.Control
       as="textarea"
