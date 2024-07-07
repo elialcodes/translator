@@ -74,15 +74,12 @@ function App() {
     <>
       <h1 className="title">Translator</h1>
       <div className="container">
-        <div className="from-and-to-container">
+        <div className="selector-languages">
           <LanguageSelector
             type="from"
             value={fromLanguage}
             onChange={setFromLanguage}
           />
-          <TextArea type="from" value={fromText} onChange={setFromText} />
-        </div>
-        <div>
           <button
             className="button-icon"
             // si el lenguaje de partida es "auto", el botón está desabilitado
@@ -91,37 +88,40 @@ function App() {
           >
             <ArrowsIcon />
           </button>
-        </div>
-        <div className="from-and-to-container">
           <LanguageSelector
             type="to"
             value={toLanguage}
             onChange={setToLanguage}
           />
-          <TextArea type="to" loading={loading} value={result} readOnly />
-          <div className="copy-and-speak">
-            <button
-              className="button-icon"
-              style={{
-                marginTop: '10px',
-              }}
-              disabled={result === ''}
-              onClick={handleClipBoard}
-            >
-              <ClipboardIcon />
-            </button>
-            <button
-              className="button-icon"
-              disabled={result === ''}
-              onClick={handleSpeak}
-            >
-              <SpeakerIcon />
-            </button>
-            {copied && (
-              <span className="copied-text" style={{ marginLeft: '10px' }}>
-                Copied text
-              </span>
-            )}
+        </div>
+        <div className="textarea-languages">
+          <TextArea type="from" value={fromText} onChange={setFromText} />
+          <div>
+            <TextArea type="to" loading={loading} value={result} readOnly />
+            <div className="copy-and-speak">
+              <button
+                className="button-icon"
+                style={{
+                  marginTop: '10px',
+                }}
+                disabled={result === ''}
+                onClick={handleClipBoard}
+              >
+                <ClipboardIcon />
+              </button>
+              <button
+                className="button-icon"
+                disabled={result === ''}
+                onClick={handleSpeak}
+              >
+                <SpeakerIcon />
+              </button>
+              {copied && (
+                <span className="copied-text" style={{ marginLeft: '10px' }}>
+                  Copied text
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
