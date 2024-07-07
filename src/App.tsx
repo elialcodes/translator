@@ -1,5 +1,4 @@
 import './App.css';
-import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import { useStore } from './hooks/useStore';
@@ -73,36 +72,36 @@ function App() {
   };
 
   return (
-    <Container>
+    <>
       <h1>Translator</h1>
-      <Row>
-        <Col>
+      <div className="container">
+        <div>
           <LanguageSelector
             type="from"
             value={fromLanguage}
             onChange={setFromLanguage}
           />
           <TextArea type="from" value={fromText} onChange={setFromText} />
-        </Col>
-        <Col>
-          <Button
-            variant="link"
+        </div>
+        <div>
+          <button
+            className="button-icon"
             // si el lenguaje de partida es "auto", el botón está desabilitado
             disabled={fromLanguage === AUTO_LANGUAGE}
             onClick={interchangeLanguage}
           >
             <ArrowsIcon />
-          </Button>
-        </Col>
-        <Col>
+          </button>
+        </div>
+        <div>
           <LanguageSelector
             type="to"
             value={toLanguage}
             onChange={setToLanguage}
           />
           <TextArea type="to" loading={loading} value={result} readOnly />
-          <Button
-            variant="link"
+          <button
+            className="button-icon"
             style={{
               marginTop: '10px',
             }}
@@ -110,25 +109,22 @@ function App() {
             onClick={handleClipBoard}
           >
             <ClipboardIcon />
-          </Button>
-          <Button
-            variant="link"
-            style={{
-              marginTop: '10px',
-            }}
+          </button>
+          <button
+            className="button-icon"
             disabled={result === ''}
             onClick={handleSpeak}
           >
             <SpeakerIcon />
-          </Button>
+          </button>
           {copied && (
-            <Button variant="primary" style={{ marginLeft: '10px' }}>
+            <span className="copied-text" style={{ marginLeft: '10px' }}>
               Copied text
-            </Button>
+            </span>
           )}
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </>
   );
 }
 
