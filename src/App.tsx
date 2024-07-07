@@ -121,7 +121,11 @@ function App() {
           >
             <SpeakerIcon />
           </Button>
-          {copied && <div className="copied-message">Copied text</div>}
+          {copied && (
+            <Button variant="primary" style={{ marginLeft: '10px' }}>
+              Copied text
+            </Button>
+          )}
         </Col>
       </Row>
     </Container>
