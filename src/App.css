@@ -1,7 +1,7 @@
-#root {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* .copied-message {
@@ -13,22 +13,59 @@
   border-radius: 5px;
 } */
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.title {
+  width: 100%;
+  font-size: 3em;
+  color: white;
   text-align: center;
-  margin-bottom: 50px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
 
 .container {
+  width: 100%;
   display: flex;
+  justify-content: center;
+  gap: 3%;
+}
+
+.from-and-to-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.language {
+  background-color: rgb(45, 169, 241);
+  font-size: 18px;
+  padding: 5px;
+  color: black;
+  border-radius: 5px;
+  margin-bottom: 10%;
+}
+
+.textarea {
+  resize: 'none';
+  background-color: transparent;
+  padding: 20px;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  resize: none;
+  height: 200px;
 }
 
 .button-icon {
   background-color: transparent;
   border: none;
+  padding: 0 4%;
 }
 
 .copied-text {
   background-color: lightskyblue;
+}
+
+@media (max-width: 768px) {
+  .language {
+    width: 130px;
+  }
 }

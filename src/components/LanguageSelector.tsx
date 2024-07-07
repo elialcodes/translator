@@ -20,7 +20,7 @@ export const LanguageSelector: FC<Props> = ({ value, onChange }) => {
   };
 
   return (
-    <select onChange={handleChange} value={value}>
+    <select className="language" onChange={handleChange} value={value}>
       {/* lo dejamos preparado para una futura api mejor que contemple como idioma de
       partida "auto" para detectar el idioma del fromText:
       si type = "from", por defecto tendrá valor "auto" para detectar el idioma */}

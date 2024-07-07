@@ -1,5 +1,4 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import { useStore } from './hooks/useStore';
 import { useDebounce } from './hooks/useDebounce';
@@ -73,9 +72,9 @@ function App() {
 
   return (
     <>
-      <h1>Translator</h1>
+      <h1 className="title">Translator</h1>
       <div className="container">
-        <div>
+        <div className="from-and-to-container">
           <LanguageSelector
             type="from"
             value={fromLanguage}
@@ -93,35 +92,37 @@ function App() {
             <ArrowsIcon />
           </button>
         </div>
-        <div>
+        <div className="from-and-to-container">
           <LanguageSelector
             type="to"
             value={toLanguage}
             onChange={setToLanguage}
           />
           <TextArea type="to" loading={loading} value={result} readOnly />
-          <button
-            className="button-icon"
-            style={{
-              marginTop: '10px',
-            }}
-            disabled={result === ''}
-            onClick={handleClipBoard}
-          >
-            <ClipboardIcon />
-          </button>
-          <button
-            className="button-icon"
-            disabled={result === ''}
-            onClick={handleSpeak}
-          >
-            <SpeakerIcon />
-          </button>
-          {copied && (
-            <span className="copied-text" style={{ marginLeft: '10px' }}>
-              Copied text
-            </span>
-          )}
+          <div className="copy-and-speak">
+            <button
+              className="button-icon"
+              style={{
+                marginTop: '10px',
+              }}
+              disabled={result === ''}
+              onClick={handleClipBoard}
+            >
+              <ClipboardIcon />
+            </button>
+            <button
+              className="button-icon"
+              disabled={result === ''}
+              onClick={handleSpeak}
+            >
+              <SpeakerIcon />
+            </button>
+            {copied && (
+              <span className="copied-text" style={{ marginLeft: '10px' }}>
+                Copied text
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </>
