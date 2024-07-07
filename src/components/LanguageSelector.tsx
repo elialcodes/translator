@@ -1,4 +1,3 @@
-import { Form } from 'react-bootstrap';
 import { SUPPORTED_LANGUAGES } from '../constants';
 import { type FC } from 'react';
 import { FromLanguage, Language } from '../types';
@@ -21,13 +20,9 @@ export const LanguageSelector: FC<Props> = ({ value, onChange }) => {
   };
 
   return (
-    <Form.Select
-      aria-label="Select the language"
-      onChange={handleChange}
-      value={value}
-    >
-      {/* lo dejamos preparado para una futura api mejor que contemple como idioma de partida
-      "auto" para detectar el idioma del fromText:
+    <select onChange={handleChange} value={value}>
+      {/* lo dejamos preparado para una futura api mejor que contemple como idioma de
+      partida "auto" para detectar el idioma del fromText:
       si type = "from", por defecto tendrá valor "auto" para detectar el idioma */}
       {/* {type === 'from' && <option value="auto">Detect language</option>} */}
 
@@ -39,6 +34,6 @@ export const LanguageSelector: FC<Props> = ({ value, onChange }) => {
           {literal}
         </option>
       ))}
-    </Form.Select>
+    </select>
   );
 };

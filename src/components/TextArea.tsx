@@ -1,4 +1,3 @@
-import { Form } from 'react-bootstrap';
 import { type FC } from 'react';
 
 interface Props {
@@ -20,8 +19,7 @@ export const TextArea: FC<Props> = ({ type, loading, onChange, value }) => {
   };
 
   return (
-    <Form.Control
-      as="textarea"
+    <textarea
       autoFocus={type === 'from'}
       placeholder={type === 'from' ? 'Enter a text' : 'Translation'}
       onChange={type === 'from' ? handleChangeTextArea : undefined}
@@ -36,6 +34,6 @@ export const TextArea: FC<Props> = ({ type, loading, onChange, value }) => {
       readOnly={type === 'to'}
     >
       {loading && <span>...Loading</span>}
-    </Form.Control>
+    </textarea>
   );
 };
