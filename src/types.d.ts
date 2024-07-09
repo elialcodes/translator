@@ -15,6 +15,8 @@ export type Language = keyof typeof SUPPORTED_LANGUAGES;
 export type AutoLanguage = typeof AUTO_LANGUAGE;
 
 //este tipado será para el idioma de partida, y juntará los 2 tipos anteriores
+//esto está pensado para una mejor api y que el lenguage por defecto sea "auto"
+//y detecte el idioma cuando el usuario escriba
 export type FromLanguage = Language | AutoLanguage;
 export interface InitialState {
   fromLanguage: FromLanguage;
@@ -34,8 +36,3 @@ export type Action =
   | { type: 'SET_TO_LANGUAGE'; payload: Language }
   | { type: 'SET_FROM_TEXT'; payload: string }
   | { type: 'SET_RESULT'; payload: string };
-
-// export interface Type {
-//   from: 'from';
-//   to: 'to';
-// }

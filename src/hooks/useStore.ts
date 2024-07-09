@@ -27,6 +27,8 @@ export function reducer(state: InitialState, action: Action): InitialState {
   //de action, sacamos la constante type
   const { type } = action;
 
+  //logica dentro del reducer:
+
   if (type === 'INTERCHANGE_LANGUAGE') {
     //logica dentro del reducer para cuando se intercambien los lenguajes:
     //si el lenguage de partida es predeterminado en auto, no se setea el estado
