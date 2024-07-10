@@ -97,7 +97,9 @@ function App() {
         <div className="textarea-languages">
           <TextArea type="from" value={fromText} onChange={setFromText} />
           <div>
-            <TextArea type="to" loading={loading} value={result} readOnly />
+            <TextArea type="to" loading={loading} value={result} readOnly>
+              <span>...Loading</span>
+            </TextArea>
             <div>
               <button
                 className="icon-button"

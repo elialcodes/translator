@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { type FC, ReactNode } from 'react';
 
 interface Props {
   type: 'from' | 'to';
@@ -7,9 +7,16 @@ interface Props {
   value: string;
   readOnly?: boolean;
   ref?: React.RefObject<HTMLTextAreaElement>;
+  children?: ReactNode;
 }
 
-export const TextArea: FC<Props> = ({ type, loading, onChange, value }) => {
+export const TextArea: FC<Props> = ({
+  type,
+  loading,
+  onChange,
+  value,
+  children,
+}) => {
   const handleChangeTextArea = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
@@ -19,16 +26,17 @@ export const TextArea: FC<Props> = ({ type, loading, onChange, value }) => {
   };
 
   return (
-    <textarea
-      className="textarea"
-      autoFocus={type === 'from'}
-      placeholder={type === 'from' ? 'Enter a text' : 'Translation'}
-      onChange={type === 'from' ? handleChangeTextArea : undefined}
-      disabled={type === 'to' && loading}
-      value={value}
-      readOnly={type === 'to'}
-    >
-      {loading && <span>...Loading</span>}
-    </textarea>
+    <div className="div-textarea">
+      <textarea
+        className="textarea"
+        autoFocus={type === 'from'}
+        placeholder={type === 'from' ? 'Enter a text' : 'Translation'}
+        onChange={type === 'from' ? handleChangeTextArea : undefined}
+        disabled={type === 'to' && loading}
+        value={value}
+        readOnly={type === 'to'}
+      />
+      {loading && children}
+    </div>
   );
 };
