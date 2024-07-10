@@ -98,7 +98,7 @@ function App() {
           <TextArea type="from" value={fromText} onChange={setFromText} />
           <div>
             <TextArea type="to" loading={loading} value={result} readOnly>
-              <span>...Loading</span>
+              <span className="loading">Loading...</span>
             </TextArea>
             <div>
               <button
