@@ -100,12 +100,9 @@ function App() {
             <TextArea type="to" loading={loading} value={result} readOnly>
               <span className="loading">Loading...</span>
             </TextArea>
-            <div>
+            <div className="div-buttons">
               <button
                 className="icon-button"
-                style={{
-                  marginTop: '10px',
-                }}
                 disabled={result === ''}
                 onClick={handleClipBoard}
               >
