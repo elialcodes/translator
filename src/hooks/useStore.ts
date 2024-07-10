@@ -30,9 +30,11 @@ export function reducer(state: InitialState, action: Action): InitialState {
 
   if (type === 'INTERCHANGE_LANGUAGE') {
     //logica dentro del reducer para cuando se intercambien los lenguajes:
-
+    if (state.fromText === '') {
+      state.loading === false;
+    }
     console.log('interchange languages');
-    //si no, tomamos con spreed todo el estado inicial y setearemos 2 estados:
+    //tomamos con spreed todo el estado inicial y setearemos los estados necesarios:
     //en esta acción hacemos un intercambio entre los lenguages de entrada y salida,
     //y aquí no hay payload, no es necesario que action devuelva información con la
     //que setear el estado, así que podemos setear directamente.
@@ -48,15 +50,14 @@ export function reducer(state: InitialState, action: Action): InitialState {
   if (type === 'SET_FROM_LANGUAGE') {
     //si el lenguaje de partida es = al que contiene payload se devuelve el estado tal cual
     if (state.fromLanguage === action.payload) return state;
-
-    //definimos la constante loading para que sea true cuando haya texto en formText
     const loading = state.fromText !== '';
     console.log('set fromLanguage');
-    //si no, tomamos con spreed todo el estado incial y setearemos uno estado
-    //con la información del payload de action y otros dos a " ".
+    //si no, tomamos con spreed todo el estado incial y setearemos los estados necesarios, uno
+    //de ellos con la información del payload de action.
     return {
       ...state,
       fromLanguage: action.payload,
+      fromText: '',
       result: '',
       loading,
     };
@@ -81,8 +82,8 @@ export function reducer(state: InitialState, action: Action): InitialState {
     console.log('set fromText');
     return {
       ...state,
-      loading, //seteamos el estado loading mientras el traductor piensa
       fromText: action.payload,
+      loading, //seteamos el estado loading mientras el traductor piensa
       result: '',
     };
   }
