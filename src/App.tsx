@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { useStore } from './hooks/useStore';
 import { useDebounce } from './hooks/useDebounce';
-import { AUTO_LANGUAGE, VOICE_FOR_LANGUAGE } from './constants';
+import { VOICE_FOR_LANGUAGE } from './constants';
 import { ArrowsIcon, ClipboardIcon, SpeakerIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
 import { TextArea } from './components/TextArea';
@@ -83,7 +83,7 @@ function App() {
           <button
             className="arrows-button"
             // si el lenguaje de partida es "auto", el botón está desabilitado
-            disabled={fromLanguage === AUTO_LANGUAGE}
+            //disabled={fromLanguage === AUTO_LANGUAGE}
             onClick={interchangeLanguage}
           >
             <ArrowsIcon />

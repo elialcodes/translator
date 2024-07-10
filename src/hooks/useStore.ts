@@ -1,5 +1,4 @@
 import { useReducer } from 'react';
-import { AUTO_LANGUAGE } from '../constants';
 import {
   type Action,
   type InitialState,
@@ -31,10 +30,8 @@ export function reducer(state: InitialState, action: Action): InitialState {
 
   if (type === 'INTERCHANGE_LANGUAGE') {
     //logica dentro del reducer para cuando se intercambien los lenguajes:
-    //si el lenguage de partida es predeterminado en auto, no se setea el estado
-    if (state.fromLanguage === AUTO_LANGUAGE) {
-      return state;
-    }
+
+    console.log('interchange languages');
     //si no, tomamos con spreed todo el estado inicial y setearemos 2 estados:
     //en esta acción hacemos un intercambio entre los lenguages de entrada y salida,
     //y aquí no hay payload, no es necesario que action devuelva información con la
@@ -43,6 +40,8 @@ export function reducer(state: InitialState, action: Action): InitialState {
       ...state,
       fromLanguage: state.toLanguage,
       toLanguage: state.fromLanguage,
+      fromText: '',
+      result: '',
     };
   }
 
@@ -52,13 +51,12 @@ export function reducer(state: InitialState, action: Action): InitialState {
 
     //definimos la constante loading para que sea true cuando haya texto en formText
     const loading = state.fromText !== '';
-
+    console.log('set fromLanguage');
     //si no, tomamos con spreed todo el estado incial y setearemos uno estado
     //con la información del payload de action y otros dos a " ".
     return {
       ...state,
       fromLanguage: action.payload,
-      fromText: '',
       result: '',
       loading,
     };
@@ -68,14 +66,19 @@ export function reducer(state: InitialState, action: Action): InitialState {
     //si el lenguaje de salida es = al que contiene payload se devuelve el estado tal cual
     if (state.toLanguage === action.payload) return state;
 
+    const loading = state.fromText !== '';
+    console.log('set toLanguage');
     return {
       ...state,
       toLanguage: action.payload,
+      result: '',
+      loading,
     };
   }
 
   if (type === 'SET_FROM_TEXT') {
     const loading = state.fromText !== '';
+    console.log('set fromText');
     return {
       ...state,
       loading, //seteamos el estado loading mientras el traductor piensa
@@ -85,6 +88,10 @@ export function reducer(state: InitialState, action: Action): InitialState {
   }
 
   if (type === 'SET_RESULT') {
+    if (state.fromText === '') {
+      return state;
+    }
+    console.log('set result');
     return {
       ...state,
       loading: false, //seteamos el estado loading cuando ya hay resultado
