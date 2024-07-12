@@ -31,7 +31,7 @@ export interface State {
 //- el payload es la información de la acción:
 //  el idioma de entrada/salida, el texto introducido/resultante
 export type Action =
-  | { type: 'INTERCHANGE_LANGUAGE' } //si el type de action es este, no tiene payload
+  | { type: 'INTERCHANGE_LANGUAGE'; payload: ? } //en este type, payload no está definido
   | { type: 'SET_FROM_LANGUAGE'; payload: FromLanguage }
   | { type: 'SET_TO_LANGUAGE'; payload: Language }
   | { type: 'SET_FROM_TEXT'; payload: string }
