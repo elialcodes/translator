@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import {
   type Action,
-  type InitialState,
+  type State,
   type FromLanguage,
   type Language,
 } from '../types';
@@ -9,7 +9,7 @@ import {
 //Hook useReducer: para manejar estados complejos:
 
 //1. Creamos el estado inicial a modo de objeto
-export const initialState: InitialState = {
+export const initialState: State = {
   fromLanguage: 'es',
   toLanguage: 'en',
   fromText: '',
@@ -22,7 +22,7 @@ export const initialState: InitialState = {
 //- una accion: action es un objeto que tiene como propiedades type (el tipo de
 //  acción) y payload (que es la información que lleva consigo la accion y con ella
 //  seteraremos el estado)
-export function reducer(state: InitialState, action: Action): InitialState {
+export function reducer(state: State, action: Action): State {
   //de action, sacamos la constante type
   const { type } = action;
 

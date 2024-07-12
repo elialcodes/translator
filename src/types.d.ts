@@ -5,8 +5,8 @@ import { type SUPPORTED_LANGUAGES, type AUTO_LANGUAGE } from './constants';
 
 //el tipo Language será el mismo que el de las keys que tenemos en el objeto de la
 //constante SUPPORTED_LENGUAGES, así, si añadimos idiomas al traductor, tomará
-//las keys y los archivo de constantes y de tipos estarán sincronizados
-//con typeof le decimos que coja el objeto al completo (y de ahí saca las keys)
+//las keys, y los archivo de constantes y de tipos estarán sincronizados
+//con typeof le decimos que coja el tipo al completo (y de ahí saca las keys)
 export type Language = keyof typeof SUPPORTED_LANGUAGES;
 
 //el tipo AutoLanguage será el mismo que el que tiene AUTO_LANGUAGE, así si
@@ -18,7 +18,7 @@ export type AutoLanguage = typeof AUTO_LANGUAGE;
 //esto está pensado para una mejor api y que el lenguage por defecto sea "auto"
 //y detecte el idioma cuando el usuario escriba
 export type FromLanguage = Language | AutoLanguage;
-export interface InitialState {
+export interface State {
   fromLanguage: FromLanguage;
   toLanguage: Language;
   fromText: string;
