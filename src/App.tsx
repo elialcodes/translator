@@ -67,6 +67,11 @@ function App() {
     speechSynthesis.speak(uterance);
   };
 
+  //función para borrar el texto de fromText
+  const handleRemoveFromText = () => {
+    setFromText('');
+  };
+
   return (
     <>
       <h1 className="title">Translator</h1>
@@ -87,7 +92,12 @@ function App() {
           />
         </div>
         <div className="textarea-languages">
-          <TextArea type="from" value={fromText} onChange={setFromText} />
+          <div>
+            <TextArea type="from" value={fromText} onChange={setFromText} />
+            <button className="remove-text" onClick={handleRemoveFromText}>
+              Remove text
+            </button>
+          </div>
           <div>
             <TextArea type="to" loading={loading} value={result} readOnly>
               <span className="loading">Loading...</span>
@@ -96,16 +106,16 @@ function App() {
               <button
                 className="icon-button"
                 disabled={result === ''}
-                onClick={handleClipBoard}
+                onClick={handleSpeak}
               >
-                <ClipboardIcon />
+                <SpeakerIcon />
               </button>
               <button
                 className="icon-button"
                 disabled={result === ''}
-                onClick={handleSpeak}
+                onClick={handleClipBoard}
               >
-                <SpeakerIcon />
+                <ClipboardIcon />
               </button>
               {copied && <span className="copied-text">Copied text!</span>}
             </div>
