@@ -50,7 +50,7 @@ export function reducer(state: State, action: Action): State {
       fromLanguage: payload,
       fromText: '',
       result: '',
-      loading: state.fromText !== '',
+      loading: false,
     };
   }
 
