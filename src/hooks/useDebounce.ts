@@ -13,7 +13,7 @@ export function useDebounce<T>(value: T, delay: number) {
       clearTimeout(timer);
     };
   }, [value, delay]);
-  //timer se vuelve ejecuta cada vez que escribimos, limpiando previamente
+  //timer se vuelve a ejecutar cada vez que escribimos, limpiando previamente
   //el setTimeout anterior y volviendo a empezar desde cero el delay
   return debounceValue;
 }

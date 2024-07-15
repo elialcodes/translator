@@ -14,7 +14,7 @@ export type Language = keyof typeof SUPPORTED_LANGUAGES;
 //constantes y de tipos estarán sincronizados
 export type AutoLanguage = typeof AUTO_LANGUAGE;
 
-//este tipado será para el idioma de partida, y juntará los 2 tipos anteriores
+//este tipado será para aplicar al idioma de partida, juntará los 2 tipos anteriores:
 //esto está pensado para una mejor api y que el lenguage por defecto sea "auto"
 //y detecte el idioma cuando el usuario escriba
 export type FromLanguage = Language | AutoLanguage;
@@ -31,7 +31,7 @@ export interface State {
 //- el payload es la información de la acción:
 //  el idioma de entrada/salida, el texto introducido/resultante
 export type Action =
-  | { type: 'INTERCHANGE_LANGUAGE'; payload: ? } //en este type, payload no está definido
+  | { type: 'INTERCHANGE_LANGUAGE'; payload?: undefinded } //en este type, payload no está definido
   | { type: 'SET_FROM_LANGUAGE'; payload: FromLanguage }
   | { type: 'SET_TO_LANGUAGE'; payload: Language }
   | { type: 'SET_FROM_TEXT'; payload: string }

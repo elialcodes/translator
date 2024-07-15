@@ -1,8 +1,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import { VOICE_FOR_LANGUAGE } from './constants';
 import { useStore } from './hooks/useStore';
 import { useDebounce } from './hooks/useDebounce';
-import { VOICE_FOR_LANGUAGE } from './constants';
 import { ArrowsIcon, ClipboardIcon, SpeakerIcon } from './components/Icons';
 import { LanguageSelector } from './components/LanguageSelector';
 import { TextArea } from './components/TextArea';
@@ -26,21 +26,18 @@ function App() {
 
   const handleTranslate = async () => {
     try {
-      const translated = await translateText(
+      const translation: string = await translateText(
         fromLanguage,
         debouncedFromText,
         toLanguage,
       );
-      setResult(translated);
+      setResult(translation);
     } catch (error) {
       console.error('Translation error:', error);
     }
   };
 
   useEffect(() => {
-    // if (fromText === '') {
-    //   return;
-    // }
     if (debouncedFromText) {
       handleTranslate();
     }
@@ -49,20 +46,20 @@ function App() {
   // Estado para mostrar el mensaje "Copied text"
   const [copied, setCopied] = useState(false);
 
-  //función para copiar texto del text area,lo hará el navegador
+  //función para copiar texto result del text area,lo hará el navegador
   //con la API del Portapapeles
   const handleClipBoard = () => {
     navigator.clipboard
       .writeText(result)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // Mostrar mensaje durante 2 segundos
+        setTimeout(() => setCopied(false), 2000); // Mostrar mensaje durante 2''
       })
       .catch(() => {});
   };
 
-  //función para dar voz al texto result, lo hará el navegador y sus propiedades
-  //uterance significa instancia
+  //función para dar voz al texto result del text area, lo hará el navegador
+  //y sus propiedades, uterance significa instancia
   const handleSpeak = () => {
     const uterance = new SpeechSynthesisUtterance(result);
     uterance.lang = VOICE_FOR_LANGUAGE[toLanguage];
@@ -80,12 +77,7 @@ function App() {
             value={fromLanguage}
             onChange={setFromLanguage}
           />
-          <button
-            className="arrows-button"
-            // si el lenguaje de partida es "auto", el botón está desabilitado
-            //disabled={fromLanguage === AUTO_LANGUAGE}
-            onClick={interchangeLanguage}
-          >
+          <button className="arrows-button" onClick={interchangeLanguage}>
             <ArrowsIcon />
           </button>
           <LanguageSelector

@@ -3,8 +3,7 @@ export async function translateText(
   fromText: string,
   toLanguage: string,
 ) {
-  const sourceLanguage = fromLanguage;
-  const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(fromText)}&langpair=${sourceLanguage}|${toLanguage}`;
+  const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(fromText)}&langpair=${fromLanguage}|${toLanguage}`;
 
   try {
     const response = await fetch(apiUrl);

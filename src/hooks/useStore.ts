@@ -6,7 +6,7 @@ import {
   type Language,
 } from '../types';
 
-//Hook useReducer: para manejar estados complejos:
+//Hook useReducer: en vez de useState, sirve para manejar estados complejos:
 
 //1. Creamos el estado inicial a modo de objeto
 export const initialState: State = {
@@ -18,10 +18,9 @@ export const initialState: State = {
 };
 
 //2. Creamos la función reducer, que siempre devuelve un estado y lleva 2 argumentos:
-//- el estado
-//- una accion: action es un objeto que tiene como propiedades type (el tipo de
-//  acción) y payload (que es la información que lleva consigo la accion y con ella
-//  seteraremos el estado)
+//- el estado inicial
+//- el objeto action: que tiene como propiedades type (el tipo de acción) y payload
+//  (que es la información que lleva consigo la accion y con ella seteraremos el estado)
 export function reducer(state: State, action: Action): State {
   //de action, sacamos las constantes type y payload
   const { type, payload } = action;
@@ -70,7 +69,7 @@ export function reducer(state: State, action: Action): State {
     return {
       ...state,
       fromText: payload,
-      loading: payload.trim() !== '',
+      loading: payload.trim() !== '', //trim elimina espacios en blanco al principio y a final
       result: '',
     };
   }
@@ -91,12 +90,12 @@ export function reducer(state: State, action: Action): State {
 
 //3. Hook useReducer, tiene como parámetros la función reducer y el estado inicial
 export function useStore() {
-  //useReduce siempre devuelve un array con 2 elementos: el estado actual del
-  //componente y el dispatch (una función que se usa para despachar acciones
-  //que actualizan el estado)
-  //del array que devuelve useReducer sacamos 5 constantes del estado inicial
-  //así como el dispatch; y como argumentos del useReducer pasamos la función
-  //reducer(función que manejará las actualizaciones del estado) y el estado inicial
+  //useReduce siempre devuelve un array con 2 elementos: el estado actual del componente y
+  //el dispatch (una función que se usa para despachar acciones que actualizan el estado)
+  //del array sacamos: del primer elemento las 5 constantes del estado inicial,
+  //y del segundo elemento el dispatch;
+  //como argumentos del useReducer pasamos: la función reducer(función que manejará
+  //las actualizaciones del estado) y el estado inicial
   const [{ fromLanguage, toLanguage, fromText, result, loading }, dispatch] =
     useReducer(reducer, initialState);
 
