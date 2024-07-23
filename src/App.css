@@ -29,7 +29,7 @@
 
 .language {
   width: 250px;
-  background-color: rgb(87, 188, 246);
+  background-color: white;
   font-size: 18px;
   padding: 5px;
   color: black;
@@ -60,7 +60,7 @@
 
 .remove-text {
   font-size: 0.9rem;
-  background-color: lightpink;
+  background-color: rgb(87, 188, 246);
   padding: 4px 6px;
   border: 1px solid black;
   border-radius: 5px;
