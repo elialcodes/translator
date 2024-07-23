@@ -10,8 +10,8 @@ import {
 
 //1. Creamos el estado inicial a modo de objeto
 export const initialState: State = {
-  fromLanguage: 'es',
-  toLanguage: 'en',
+  fromLanguage: 'en',
+  toLanguage: 'es',
   fromText: '',
   result: '',
   loading: false,
