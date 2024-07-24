@@ -34,6 +34,9 @@ Start the project:
   npm run dev
 ```
 
+## API 🔗
+https://mymemory.translated.net/doc/spec.php
+
 ## Links 🔗
 
 https://translator-mauve-zeta.vercel.app/
