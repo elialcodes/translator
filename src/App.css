@@ -9,8 +9,7 @@
   font-size: 3em;
   color: white;
   text-align: center;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  padding: 10vh 0 5vh 0;
 }
 
 .container {
@@ -116,8 +115,7 @@
 @media (max-width: 767px) {
   .title {
     font-size: 2em;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    padding: 3vh 0;
   }
 
   .container {
