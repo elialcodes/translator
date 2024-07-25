@@ -130,6 +130,7 @@
   }
 
   .textarea-languages {
+    border: 1 solid lightgrey;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
