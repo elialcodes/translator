@@ -51,7 +51,7 @@
   height: 200px;
   padding: 20px;
   background-color: transparent;
-  border: 1 solid lightgrey;
+  border: 1px solid lightgrey;
   font-size: 16px;
   color: white;
   border-radius: 5px;
@@ -130,7 +130,7 @@
   }
 
   .textarea-languages {
-    border: 1 solid lightgrey;
+    border: 1px solid lightgrey;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
