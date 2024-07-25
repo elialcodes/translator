@@ -39,4 +39,4 @@ https://mymemory.translated.net/doc/spec.php
 
 ## Links 🔗
 
-https://translator-mauve-zeta.vercel.app/
+https://translator-nu-jade.vercel.app
