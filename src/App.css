@@ -61,6 +61,7 @@
 .remove-text {
   font-size: 0.9rem;
   background-color: rgb(248, 185, 160);
+  color: black;
   padding: 4px 6px;
   border: 1px solid black;
   border-radius: 5px;
