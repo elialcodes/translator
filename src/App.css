@@ -51,6 +51,7 @@
   height: 200px;
   padding: 20px;
   background-color: transparent;
+  border: 1 solid lightgrey;
   font-size: 16px;
   color: white;
   border-radius: 5px;
@@ -59,7 +60,7 @@
 
 .remove-text {
   font-size: 0.9rem;
-  background-color: rgb(87, 188, 246);
+  background-color: rgb(248, 185, 160);
   padding: 4px 6px;
   border: 1px solid black;
   border-radius: 5px;
@@ -71,7 +72,7 @@
 }
 
 .loading {
-  color: lightpink;
+  color: lightskyblue;
   font-size: 0.9rem;
 }
 
