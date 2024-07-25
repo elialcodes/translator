@@ -29,7 +29,7 @@ export const TextArea: FC<Props> = ({
     <div className="div-textarea">
       <textarea
         className="textarea"
-        autoFocus={type === 'from'}
+        // autoFocus={type === 'from'}
         placeholder={type === 'from' ? 'Enter a text' : 'Translation'}
         onChange={type === 'from' ? handleChangeTextArea : undefined}
         disabled={type === 'to' && loading}
