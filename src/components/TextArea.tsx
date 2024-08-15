@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { type FC, ReactNode } from 'react';
 
 interface Props {
