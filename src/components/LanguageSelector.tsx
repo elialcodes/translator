@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { SUPPORTED_LANGUAGES } from '../constants';
 import { type FC } from 'react';
 import { FromLanguage, Language } from '../types';

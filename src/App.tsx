@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import './App.css';
 import { useEffect, useState } from 'react';
 import { VOICE_FOR_LANGUAGE } from './constants';
