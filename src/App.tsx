@@ -127,7 +127,3 @@ function App() {
 }
 
 export default App;
-
-//Como estás? Necesito escribir un texto muy largo para ver si sale "cargando"
-//bon jour
-//My name is Noelia

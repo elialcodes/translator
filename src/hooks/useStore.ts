@@ -6,7 +6,7 @@ import {
   type Language,
 } from '../types';
 
-//Hook useReducer: en vez de useState, sirve para manejar estados complejos:
+//Hook useReducer: en vez de useState, y sirve para manejar estados complejos:
 
 //1. Creamos el estado inicial a modo de objeto
 export const initialState: State = {
@@ -19,7 +19,7 @@ export const initialState: State = {
 
 //2. Creamos la función reducer, que siempre devuelve un estado y lleva 2 argumentos:
 //- el estado inicial
-//- el objeto action: que tiene como propiedades type (el tipo de acción) y payload
+//- el objeto action: que dentro tiene las propiedades type (el tipo de acción) y payload
 //  (que es la información que lleva consigo la accion y con ella seteraremos el estado)
 export function reducer(state: State, action: Action): State {
   //de action, sacamos las constantes type y payload
@@ -90,9 +90,9 @@ export function reducer(state: State, action: Action): State {
 
 //3. Hook useReducer, tiene como parámetros la función reducer y el estado inicial
 export function useStore() {
-  //useReduce siempre devuelve un array con 2 elementos: el estado actual del componente y
+  //useReduce siempre se compone de un array con 2 elementos: el estado actual y
   //el dispatch (una función que se usa para despachar acciones que actualizan el estado)
-  //del array sacamos: del primer elemento las 5 constantes del estado inicial,
+  //de dicho array sacamos: del primer elemento las 5 constantes del estado inicial,
   //y del segundo elemento el dispatch;
   //como argumentos del useReducer pasamos: la función reducer(función que manejará
   //las actualizaciones del estado) y el estado inicial
@@ -101,7 +101,7 @@ export function useStore() {
 
   //es buena práctica que el dispatch no salga de aquí, asi que hacemos una
   //función intermedia, que será lo que retornemos y que nos dice que despachemos
-  //la action del reducer correspondiente al type...el que sea
+  //la action del reducer correspondiente al type... el que sea
   const interchangeLanguage = () => {
     dispatch({ type: 'INTERCHANGE_LANGUAGE', payload: undefined });
   };
@@ -122,6 +122,8 @@ export function useStore() {
     dispatch({ type: 'SET_RESULT', payload });
   };
 
+  //devolvemos los 5 estados procedentes de la función reducer
+  //devolvemos las 5 funciones del useReducer (setean los 5 estados anteriores)
   return {
     fromLanguage,
     toLanguage,

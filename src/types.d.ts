@@ -3,10 +3,10 @@
 //el archivo de los tipos esté sincronizado
 import { type SUPPORTED_LANGUAGES, type AUTO_LANGUAGE } from './constants';
 
-//el tipo Language será el mismo que el de las keys que tenemos en el objeto de la
+//el tipo Language queremos que tenga las mismas keys que en el objeto de la
 //constante SUPPORTED_LENGUAGES, así, si añadimos idiomas al traductor, tomará
-//las keys, y los archivo de constantes y de tipos estarán sincronizados
-//con typeof le decimos que coja el tipo al completo (y de ahí saca las keys)
+//las keys: los archivo de constantes y de tipos estarán sincronizados,
+//con keyof typeof le decimos que coja las keys de los esos types.
 export type Language = keyof typeof SUPPORTED_LANGUAGES;
 
 //el tipo AutoLanguage será el mismo que el que tiene AUTO_LANGUAGE, así si
